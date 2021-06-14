@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  description: Details
+  version: "1.0.0"
+  title: Countries List
+  contact:
+    email: abcd@abc.com
+  license:
+    name: ABCD
+    url: localhost
+tags:
+  - name: Country
+    description: All around the world
+    externalDocs:
+      description: Find out more
+      url: abc
+
+paths:
+  /world:
+    get:
+      tags:
+        - Country
+      summary: All countries names
+      description: Gets all countries result
+      operationId: getAllCountriesName
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+        '500':
+          description: INTERNAL SERVER ERROR
+  /world/country/{countryName}:
+    get:
+      tags:
+        - Country
+      summary: Return Specific Country Name
+      description: Get specific country details
+      operationId: getCountryByName
+      parameters:
+        - name: countryName
+          in: path
+          description: Country Name
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+        '500':
+          description: INTERNAL SERVER ERROR
+  /world/country/{countryName}/city:
+    get:
+      tags:
+        - Country
+      summary: Return city details by Country name
+      description: Get Specific country details
+      operationId: getCityByCountryName
+      parameters:
+        - name: countryName
+          in: path
+          description: Country Name
+          schema:
+            type: string
+          required: true
+
+        - name: cityName
+          in: query
+          required: true
+          description: Enter City name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+        '500':
+          description: INTERNAL SERVER ERROR
